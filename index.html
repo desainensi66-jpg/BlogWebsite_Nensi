@@ -3,75 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Gourmet Gazette - Food Blog</title>
+    <title>World News</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>The Gourmet Gazette</h1>
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="#Italian-Cuisine">Italian Cuisine</a></li>
-                <li><a href="#Street-Food">Street Food</a></li>
-                <li><a href="#Healthy-Desserts">Healthy Desserts</a></li>
+        <nav class="navbar">
+            <div class="logo" onclick="showAllPosts()">WORLD<span>NEWS</span></div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="openSpecificPost('tech')">Technology</a></li>
+                <li><a href="#" onclick="openSpecificPost('nature')">Nature</a></li>
+                <li><a href="#" onclick="openSpecificPost('science')">Science</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="blog-container">
-        <article class="blog-post" id="Italian-Cuisine">
-            <h2 class="post-title">The Secret to Authentic Neapolitan Pizza</h2>
-            <p class="post-date">Published on: Dec 30, 2025</p>
-            <img src="image/download.jpeg" alt="Neapolitan Pizza" class="post-image">
-            <div class="post-content">
-                <p>Authentic Neapolitan pizza is all about the dough. Using high-quality '00' flour and a long fermentation process creates that perfect charred crust.</p>
-            </div>
-            <section class="comment-section">
-                <h3>Comments</h3>
-                <div class="comments-display" id="comments-1"></div>
-                <div class="form-container" data-post-id="1"></div>
-            </section>
-        </article>
+    <section class="hero-header" id="heroImage">
+        <div class="hero-overlay">
+            <h1>Global Insights 2026</h1>
+            <p>Your daily source for technology, science, and the environment.</p>
+        </div>
+    </section>
 
-        <article class="blog-post" id="Street-Food">
-            <h2 class="post-title">Top 5 Street Foods to Try in Bangkok</h2>
-            <p class="post-date">Published on: Dec 31, 2025</p>
-            <img src="image/download (1).jpeg" alt="Street Food" class="post-image">
-            <div class="post-content">
-                <p>From Pad Thai to Mango Sticky Rice, the streets of Bangkok offer a flavor explosion that is both affordable and unforgettable.</p>
-            </div>
-            <section class="comment-section">
-                <h3>Comments</h3>
-                <div class="comments-display" id="comments-2"></div>
-                <div class="form-container" data-post-id="2"></div>
-            </section>
-        </article>
+    <main class="container">
+        <div class="posts-row" id="mainGrid">
+            
+            <article class="news-card" id="tech" onclick="openSpecificPost('tech')">
+                <img src="image/AI.jpeg" alt="Technology" class="post-img">
+                <div class="post-body">
+                    <p class="publish-date">Jan 1, 2026</p>
+                    <h2 class="post-title">The AI Revolution</h2>
+                    <p class="excerpt">Quantum processors are moving into commercial centers...</p>
+                    
+                    <div class="full-content">
+                        <p>Detailed analysis on how quantum computing is redefining global industries.</p>
+                        <div class="comment-section">
+                            <h4>Leave a Comment</h4>
+                            <div id="comments-list-tech" class="display-comments"></div>
+                            <form class="comment-form" onsubmit="submitComment(event, 'tech')">
+                                <input type="text" placeholder="Your Name" required>
+                                <textarea placeholder="Write your comment..." required></textarea>
+                                <button type="submit" class="post-btn">Post Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-        <article class="blog-post" id="Healthy-Desserts">
-            <h2 class="post-title">Guilt-Free Dark Chocolate Avocado Mousse</h2>
-            <p class="post-date">Published on: Jan 01, 2026</p>
-            <img src="image/download (2).jpeg" alt="Chocolate Mousse" class="post-image">
-            <div class="post-content">
-                <p>This creamy dessert uses ripe avocados for a silky texture, providing healthy fats without sacrificing the rich chocolate taste.</p>
-            </div>
-            <section class="comment-section">
-                <h3>Comments</h3>
-                <div class="comments-display" id="comments-3"></div>
-                <div class="form-container" data-post-id="3"></div>
-            </section>
-        </article>
+            <article class="news-card" id="nature" onclick="openSpecificPost('nature')">
+                <img src="image/nature.jpeg" alt="Nature" class="post-img">
+                <div class="post-body">
+                    <p class="publish-date">Jan 5, 2026</p>
+                    <h2 class="post-title">Global Reforestation</h2>
+                    <p class="excerpt">Two billion trees were successfully planted this year...</p>
+                    
+                    <div class="full-content">
+                        <p>A milestone achievement in environmental preservation using drone technology.</p>
+                        <div class="comment-section">
+                            <h4>Leave a Comment</h4>
+                            <div id="comments-list-nature" class="display-comments"></div>
+                            <form class="comment-form" onsubmit="submitComment(event, 'nature')">
+                                <input type="text" placeholder="Your Name" required>
+                                <textarea placeholder="Write your comment..." required></textarea>
+                                <button type="submit" class="post-btn">Post Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-card" id="science" onclick="openSpecificPost('science')">
+                <img src="image/science.jpeg" alt="Science" class="post-img">
+                <div class="post-body">
+                    <p class="publish-date">Jan 10, 2026</p>
+                    <h2 class="post-title">Mars Colony Update</h2>
+                    <p class="excerpt">The first life-support module has landed on the Martian surface...</p>
+                    
+                    <div class="full-content">
+                        <p>A new era of human exploration as permanent structures land on the Red Planet.</p>
+                        <div class="comment-section">
+                            <h4>Leave a Comment</h4>
+                            <div id="comments-list-science" class="display-comments"></div>
+                            <form class="comment-form" onsubmit="submitComment(event, 'science')">
+                                <input type="text" placeholder="Your Name" required>
+                                <textarea placeholder="Write your comment..." required></textarea>
+                                <button type="submit" class="post-btn">Post Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 The Gourmet Gazette</p>
-            <ul class="footer-link">
-                <li><a href="#Italian-Cuisine">Italian Cuisine</a></li>
-                <li><a href="#Street-Food">Street Food</a></li>
-                <li><a href="#Healthy-Desserts">Healthy Desserts</a></li>
-            </ul>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>About WORLD<span>NEWS</span></h4>
+                <p>Delivering high-quality journalism and the latest <br> updates in technology, science, and nature since 2026.</p>
+            </div>
 
-            <p>Contact: desainensi66@gmail.com</p>
+            <div class="footer-col centers" >
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#" onclick="showAllPosts()">Home</a></li>
+                    <li><a href="#" onclick="openSpecificPost('tech')">Technology</a></li>
+                    <li><a href="#" onclick="openSpecificPost('nature')">Nature</a></li>
+                    <li><a href="#" onclick="openSpecificPost('science')">Science</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>Email: info@worldnews.com</p>
+                <div class="social-links">
+                    <a href="#">FB</a>
+                    <a href="#">TW</a>
+                    <a href="#">IG</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 World News Portal. All Rights Reserved. | World News Blog Project</p>
         </div>
     </footer>
 

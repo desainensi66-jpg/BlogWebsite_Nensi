@@ -1,35 +1,43 @@
-const formHTML = `
-    <form class="comment-form">
-        <input type="text" placeholder="Your Name" required>
-        <textarea placeholder="Write your message..." required></textarea>
-        <button type="submit">Post Comment</button>
-    </form>
-`;
 
-// Inject the form into all containers
-document.querySelectorAll('.form-container').forEach(container => {
-    container.innerHTML = formHTML;
-});
+function openSpecificPost(id) {
+    const cards = document.querySelectorAll('.news-card');
+    const hero = document.getElementById('heroImage');
+    
+    hero.style.display = 'none'; // Hide header image for focus
+    cards.forEach(card => {
+        if (card.id === id) {
+            card.classList.add('active');
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none'; // Hide other posts
+        }
+    });
+}
 
-// Handle submissions
-document.addEventListener('submit', function (e) {
-    if (e.target.classList.contains('comment-form')) {
-        e.preventDefault();
-        
-        const form = e.target;
-        const container = form.closest('.form-container');
-        const postId = container.getAttribute('data-post-id');
-        const name = form.querySelector('input').value;
-        const message = form.querySelector('textarea').value;
-        const display = document.getElementById(`comments-${postId}`);
+function showAllPosts() {
+    const cards = document.querySelectorAll('.news-card');
+    const hero = document.getElementById('heroImage');
+    
+    hero.style.display = 'flex';
+    cards.forEach(card => {
+        card.classList.remove('active');
+        card.style.display = 'block';
+    });
+}
 
-        // Create comment element
-        const commentDiv = document.createElement('div');
-        commentDiv.style.borderBottom = "1px solid #eee";
-        commentDiv.style.padding = "10px 0";
-        commentDiv.innerHTML = `<strong>${name}</strong>: <p>${message}</p>`;
-        
-        display.appendChild(commentDiv);
-        form.reset();
-    }
-});
+function submitComment(event, id) {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.querySelector('input').value;
+    const msg = form.querySelector('textarea').value;
+    const list = document.getElementById(`comments-list-${id}`);
+
+    const comment = document.createElement('p');
+    comment.style.background = "#eee";
+    comment.style.padding = "10px";
+    comment.style.borderRadius = "5px";
+    comment.innerHTML = `<strong>${name}:</strong> ${msg}`;
+    
+    list.appendChild(comment);
+    form.reset();
+}
